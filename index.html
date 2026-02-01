@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Last Divine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div id="character-display">
+            <img src="images/char.png" id="char-avatar-img" alt="Character">
+        </div>
+
+        <div id="character-info">
+            <p><strong>Name:</strong> <span id="char-name">Galen</span></p>
+            <p><strong>Health:</strong> <span id="char-health">100/100</span></p>
+            <p><strong>Energy:</strong> <span id="char-energy">50/50</span></p>
+            <p><strong>Condition:</strong> <span id="char-condition">Normal</span></p>
+        </div>
+
+        <button class="sidebar-button" id="inventory-btn">INVENTORY</button>
+        <button class="sidebar-button" id="stats-btn">STATS</button>
+        <button class="sidebar-button" id="appearance-btn">APPEARANCE</button>
+        
+        <div id="sidebar-bottom-buttons">
+            <button class="sidebar-button" id="save-btn">SAVE GAME</button>
+            <button class="sidebar-button" id="load-btn">LOAD GAME</button>
+            <button class="sidebar-button" id="quit-btn" onclick="window.close()">QUIT GAME</button>
+        </div>
+    </div> <div id="story-section">
+        <p>Loading game data...</p>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

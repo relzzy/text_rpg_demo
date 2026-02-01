@@ -1,0 +1,152 @@
+/* --- Base Styles --- */
+body {
+    font-family: serif;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    
+    /* Background Image Handling */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    transition: background-image 0.5s ease-in-out;
+}
+
+#sidebar {
+    width: 300px;
+    background-color: rgba(34, 34, 34, 0.95); /* Dark semi-transparent box */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+#story-section {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+    line-height: 1.6;
+    max-width: 800px;
+    
+    /* Text Overlay Box (Makes text readable on images) */
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.85); 
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+
+/* --- Avatar & Info --- */
+#character-display {
+    width: 150px;
+    height: 150px;
+    background-color: #444;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 3px solid #555;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevents squishing */
+}
+
+#character-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#character-info {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#character-info p {
+    margin: 5px 0;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+/* --- Buttons --- */
+.sidebar-button {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border: none;
+    border-left: 4px solid transparent;
+    text-align: left;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sidebar-button:hover {
+    background-color: #505050;
+    border-left-color: #a0a0a0;
+    padding-left: 20px;
+}
+
+#sidebar-bottom-buttons {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* --- Story & Choices --- */
+.chapter-title {
+    color: #ffd700;
+    text-align: center;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.choice-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: rgba(51, 51, 51, 0.9);
+    color: #fff;
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
+.choice-btn:hover {
+    background-color: #666;
+    border-color: #999;
+}
+
+/* --- Inventory Grid --- */
+.inventory-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.inventory-item-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border: 1px solid #555;
+}
+
+.inventory-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

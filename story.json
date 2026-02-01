@@ -1,0 +1,242 @@
+{
+  "start": {
+    "title": "Chapter One: Into The Throes of Fate",
+    "backgroundImage": "images/room.png",
+    "text": "\"They're coming for you. We must hurry.\" Your eyes skid from the rounded oak table to the glass orb at its center. Then finally to the old man sitting across from you. He glances at your {clothing} with pity. \"Did you hear me?\"",
+    "choices": [
+      {
+        "text": "Grab your bag and follow him.",
+        "nextNode": "flee_with_galen",
+        "effects": {
+          "energy": -5,
+          "condition": "Hurried"
+        }
+      },
+      {
+        "text": "Ask 'Who is coming for me?'",
+        "nextNode": "ask_who"
+      },
+      {
+        "text": "Look for your nearby dagger. (Requires 10 Strength)",
+        "nextNode": "find_dagger",
+        "check": { "stat": "strength", "value": 10 },
+        "inventoryEffect": {
+          "action": "add",
+          "item": { "id": "dagger", "name": "Small Dagger", "quantity": 1, "description": "A simple, sharp blade.","image": "images/dagger.png" }
+        }
+      }
+    ]
+  },
+  "flee_with_galen": {
+    "title": "On the Run",
+    "backgroundImage": "images/room.png",
+    "text": "You snatch your bag and burst out the door into the muddy street. The rain is cold. 'This way, quickly!' Galen yells, pulling you toward a dark alley.",
+    "choices": [
+      { "text": "Follow him into the alley.", "nextNode": "alley" }
+    ]
+  },
+  "ask_who": {
+    "title": "No Time for Questions",
+    "backgroundImage": "images/room.png",
+    "text": "'There is no time!' Galen snaps, his eyes wide with fear. 'They are the shadow-takers, the Inquisitors! Now move!' He shoves you toward the door.",
+    "choices": [
+      {
+        "text": "Do as he says and grab your bag.",
+        "nextNode": "flee_with_galen",
+        "effects": {
+          "energy": -5,
+          "condition": "Startled"
+        }
+      }
+    ]
+  },
+  "find_dagger": {
+    "title": "Armed and Ready",
+    "backgroundImage": "images/room.png",
+    "text": "Your hand instinctively finds the hilt of the small dagger tucked under the table. You grasp it and stand. 'I'm ready.' Galen nods, a grim approval in his eyes.",
+    "choices": [
+      {
+        "text": "Follow him out the door, dagger in hand.",
+        "nextNode": "flee_with_galen",
+        "effects": {
+          "energy": -5,
+          "condition": "Ready"
+        }
+      }
+    ]
+  },
+  "alley": {
+    "title": "The Alley",
+    "backgroundImage": "images/alley.png",
+    "text": "You are in a dark alley. The rain is pouring. Galen gestures to a loose grate on the ground.",
+    "choices": [
+      { "text": "Climb down into the grate.", "nextNode": "sewer_entrance" },
+      { "text": "Refuse. 'I'm not going in there.'", "nextNode": "refuse_sewer" },
+      { "text": "Start Over (for testing)", "nextNode": "start" }
+    ]
+  },
+  "sewer_entrance": {
+    "title": "The Underground",
+    "backgroundImage": "images/sewers.png",
+    "text": "You drop down the sewer with a splash, Galen lands next to you and urges you to run forward. You're tired... after a few meters, you are met with a crossroad. Left or right! Choose.",
+    "choices": [
+      {
+        "text": "Go right",
+        "nextNode": "right",
+        "effects": { "energy": -5, "condition": "Normal" }
+      },
+      { "text": "Go left", "nextNode": "left_path" }
+    ]
+  },
+  "refuse_sewer": {
+    "title": "A Bad Choice",
+    "backgroundImage": "images/alley.png",
+    "text": "You hesitate. 'I'm not...' Before you can finish, a crossbow bolt thuds into Galen's chest. He looks at you, surprised, before slumping to the ground.",
+    "choices": [
+      {
+        "text": "You died. (Start Over)",
+        "nextNode": "start",
+        "effects": { "health": 100, "energy": 50, "condition": "Normal" }
+      }
+    ]
+  },
+  "right": {
+    "title": "Death",
+    "backgroundImage": "images/sewers.png",
+    "text": "Death, so instantaneous your brain shuts off before it could comprehend what happened. YOU DIED.",
+    "choices": [
+      {
+        "text": "Start Over",
+        "nextNode": "start",
+        "effects": { "health": 100, "energy": 50, "condition": "Normal" }
+      }
+    ]
+  },
+  "left_path": {
+    "title": "The Left Path",
+    "backgroundImage": "images/sewers.png",
+    "text": "You take the left tunnel. It's darker and the water is deeper here... You see a glint of metal in the muck.",
+    "choices": [
+      {
+        "text": "Investigate the glint.",
+        "nextNode": "find_key",
+        "inventoryEffect": {
+          "action": "add",
+          "item": { "id": "sewer_key", "name": "Rusted Key", "quantity": 1, "description": "An old, heavy iron key.","image": "images/key.png" }
+        }
+      },
+      {
+        "text": "Ignore it and keep going.",
+        "nextNode": "locked_door"
+      }
+    ]
+  },
+  "find_key": {
+    "title": "A Fortunate Find",
+    "backgroundImage": "images/sewers.png",
+    "text": "You reach into the muck and pull out a large, rusted iron key. It feels important. You pocket it and continue on, eventually reaching a large, locked iron door.",
+    "choices": [
+      {
+        "text": "Continue to the door.",
+        "nextNode": "locked_door"
+      }
+    ]
+  },
+  "locked_door": {
+    "title": "The Iron Door",
+    "backgroundImage": "images/door.png",
+    "text": "You stand before a massive, locked iron door. A large, ornate keyhole is set in its center.",
+    "choices": [
+      {
+        "text": "Unlock the door with the Rusted Key.",
+        "nextNode": "door_unlocked",
+        "checkInventory": {
+          "id": "sewer_key",
+          "quantity": 1
+        }
+      },
+      {
+        "text": "Look for another way around.",
+        "nextNode": "start"
+      }
+    ]
+  },
+  "door_unlocked": {
+    "title": "Door Unlocked",
+    "backgroundImage": "images/door.png",
+    "text": "The key slides into the lock with a heavy 'clunk'. You turn it, and the massive door swings open. Your story continues...",
+    "choices": [
+      { "text": "Continue...", "nextNode": "the_black_market" }
+    ]
+  },
+  "the_black_market": {
+    "title": "Friends, Allies, or Foes?",
+    "backgroundImage": "images/market.png",
+    "text": "The door opens with a creak and Galen's ears are blasted with the noise of a crowd. He looks around, startled. He had entered the famous underground market of the mage kingdom. He stumbles forward and is caught by someone right before he hits the ground. He looks up to an unfamiliar face. 'Don't worry, go to sleep,' he says in bad English. Galen faints.",
+    "choices": [
+      {
+        "text": "Sleep...",
+        "nextNode": "sleep",
+        "inventoryEffect": {
+          "action": "remove",
+          "item": { "id": "dagger", "quantity": 1 }
+        }
+      }
+    ]
+  },
+  "sleep": {
+    "title": "Waking Up",
+    "backgroundImage": "images/room2.png",
+    "text": "You wake up with a gasp. You're on a cot in a small, dimly lit room. Your bag is on the floor, but it feels lighter. The man who caught you is sitting in a chair in the corner.",
+    "choices": [
+      {
+        "text": "Check your bag.",
+        "nextNode": "check_bag",
+        "inventoryEffect": {
+          "action": "remove",
+          "item": { "id": "sewer_key", "quantity": 1 }
+        }
+      },
+      {
+        "text": "Who are you?",
+        "nextNode": "who_are_you"
+      }
+    ]
+  },
+  "check_bag": {
+    "title": "Bag Check",
+    "backgroundImage": "images/room2.png",
+    "text": "You rummage through your bag. Your dagger is gone. So is the rusted key you found. 'Looking for these?' the man says, holding up both items.",
+    "choices": [
+      { "text": "Who are you?", "nextNode": "who_are_you" }
+    ]
+  },
+  "who_are_you": {
+    "title": "The Stranger",
+    "backgroundImage": "images/room2.png",
+    "text": "'Just an old friend.' The man stands up, a strange glint in his eyes. 'You have a lot of catching up to do, Galen.' He blows out the lantern, plunging the room into darkness.",
+    "choices": [
+      { "text": "Continue...", "nextNode": "end" }
+    ]
+  },
+  "end": {
+    "title": "TO BE CONTINUED",
+    "backgroundImage": "images/room2.png",
+    "text": "This marks the end of the demo. Thank you for playing The Last Divine.",
+    "choices": [
+      {
+        "text": "Restart Game",
+        "nextNode": "start",
+        "effects": {
+           "health": 100,
+           "energy": 50,
+           "condition": "Normal",
+           "clothing": "Tattered Rags",
+           "hair": "Messy Black Hair",
+           "eyes": "Tired Brown Eyes",
+           "face": "Smudged with Dirt"
+        }
+      }
+    ]
+  }
+}
