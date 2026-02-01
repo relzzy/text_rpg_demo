@@ -226,6 +226,20 @@ function handleChoice(event) {
     const currentNode = storyData[gameState.currentStoryNode];
     const choice = currentNode.choices[choiceIndex];
 
+    // --- NEW: HARD RESET LOGIC FOR RESTART/DEATH ---
+    if (choice.nextNode === "start") {
+        gameState.inventory = [
+            { 
+                id: "potion_health_1", 
+                name: "Small Potion", 
+                quantity: 1, 
+                description: "Restores 20 health.", 
+                image: "images/potion.jpg" 
+            }
+        ];
+    }
+    // ----------------------------------------------
+
     if (choice.effects) {
         for (const key in choice.effects) {
             const effectValue = choice.effects[key];
@@ -308,7 +322,7 @@ function renderInventoryScreen() {
             useItem(itemId);
         });
     });
-} // <--- Function closes here. No dangling code after this.
+} 
 
 function renderStatsScreen() {
     const storySection = document.getElementById('story-section');
