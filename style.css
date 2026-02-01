@@ -150,3 +150,66 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+
+/* --- MOBILE MENU BUTTON (Fixed & Small) --- */
+#mobile-menu-btn {
+    display: none; /* 1. HIDDEN ON PC by default */
+    position: fixed; /* 2. FLOATS on top (removes it from flex layout) */
+    top: 10px;
+    left: 10px;
+    z-index: 2000; /* Stays above everything */
+    
+    /* Small, Clean Styling */
+    background-color: #222;
+    color: #ffd700;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 5px 8px; /* Small padding */
+    font-size: 1.2rem; /* Icon size */
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* --- MOBILE SPECIFIC STYLES --- */
+@media (max-width: 768px) {
+    
+    /* 1. Show the button ONLY on mobile */
+    #mobile-menu-btn {
+        display: block; 
+    }
+
+    /* 2. Sidebar Logic (Hidden by default on mobile) */
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 250px;
+        background-color: rgba(20, 20, 20, 0.98);
+        
+        /* Slide logic */
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1500;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.8);
+    }
+
+    /* Class added by JS to show sidebar */
+    #sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* 3. Adjust Story Section for Mobile */
+    #story-section {
+        margin: 0; /* Reset margins */
+        padding: 60px 20px 20px 20px; /* Add top padding so text isn't behind the button */
+        width: 100%;
+        max-width: none;
+    }
+
+    /* 4. Readable Text Sizes */
+    body { font-size: 16px; }
+    .chapter-title { font-size: 1.8em; }
+    .choice-btn { padding: 12px; }
+}

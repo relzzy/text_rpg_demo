@@ -374,6 +374,7 @@ function renderAppearanceScreen() {
 /* --- 4. GAME START --- */
 document.addEventListener('DOMContentLoaded', () => {
     
+    // 1. Check for required elements
     const requiredIds = ['char-name', 'char-health', 'char-energy', 'char-condition', 'inventory-btn', 'story-section', 'save-btn', 'stats-btn', 'appearance-btn'];
     let allElementsFound = true;
     for (const id of requiredIds) {
@@ -384,6 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (!allElementsFound) return;
 
+    // 2. Hook up Standard Buttons
     document.getElementById('save-btn').addEventListener('click', saveGame);
     
     const loadBtn = document.getElementById('load-btn');
@@ -393,6 +395,36 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('inventory-btn').addEventListener('click', renderInventoryScreen);
     document.getElementById('appearance-btn').addEventListener('click', renderAppearanceScreen);
 
-    // KICKSTART
+    // 3. --- NEW: MOBILE MENU LOGIC ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener('click', () => {
+            // Toggle the 'active' class to slide sidebar in/out
+            sidebar.classList.toggle('active');
+            
+            // Toggle button text
+            if (sidebar.classList.contains('active')) {
+                mobileMenuBtn.textContent = "✖ CLOSE";
+            } else {
+                mobileMenuBtn.textContent = "☰ MENU";
+            }
+        });
+    }
+
+    // Auto-close sidebar when clicking a navigation button (Better UX)
+    const navButtons = document.querySelectorAll('.sidebar-button');
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Only close if on mobile
+            if (window.innerWidth <= 768 && sidebar) {
+                sidebar.classList.remove('active');
+                if(mobileMenuBtn) mobileMenuBtn.textContent = "☰ MENU";
+            }
+        });
+    });
+
+    // 4. KICKSTART
     loadGameData();
 });
